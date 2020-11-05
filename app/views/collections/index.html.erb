@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Collections</h1>
+<%= link_to 'logout', destroy_user_session_path, method: :delete %>
 
 <table>
   <thead>
@@ -40,5 +41,6 @@
 </table>
 
 <br>
-
+<% if can? :create, Collection %>
 <%= link_to 'New Collection', new_collection_path %>
+<% end %>

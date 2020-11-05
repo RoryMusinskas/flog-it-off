@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: %i[show edit update destroy]
-  before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /collections
   # GET /collections.json
@@ -15,6 +15,7 @@ class CollectionsController < ApplicationController
   # GET /collections/new
   def new
     @collection = Collection.new
+    authorize! :create, @collection
   end
 
   # GET /collections/1/edit
