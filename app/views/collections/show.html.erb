@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @collection.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @collection.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @collection.price %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @collection.quantity %>
+</p>
+
+<p>
+  <strong>Available hours morning:</strong>
+  <%= @collection.available_hours_morning %>
+</p>
+
+<p>
+  <strong>Available hours night:</strong>
+  <%= @collection.available_hours_night %>
+</p>
+
+<p>
+  <strong>Available until:</strong>
+  <%= @collection.available_until %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @collection.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @collection.latitude %>
+</p>
+
+<%= link_to 'Edit', edit_collection_path(@collection) %> |
+<%= link_to 'Back', collections_path %>
