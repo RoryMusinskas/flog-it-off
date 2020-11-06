@@ -27,9 +27,10 @@ gem 'jbuilder', '~> 2.7'
 
 # custom gems
 gem 'better_errors'
-gem 'devise'
-gem 'simple_form'
 gem 'cancancan'
+gem 'devise'
+gem 'kiso_themes', '~>1.0.2', source: 'https://gems.kiso.io/'
+gem 'simple_form'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
