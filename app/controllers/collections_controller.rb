@@ -7,6 +7,12 @@ class CollectionsController < ApplicationController
   # GET /collections.json
   def index
     @collections = Collection.all
+
+    gon.collections = @collections
+    # get the values from the database and convert them to geojson for the map layer
+    @geojson = build_geojson
+    # set the gon variable to the geojson object to pass to the index map js file
+    gon.geocollection = @geojson
   end
 
   # GET /collections/1
@@ -72,5 +78,12 @@ class CollectionsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def collection_params
     params.require(:collection).permit(:user_id, :name, :description, :price, :quantity, :available_hours_morning, :available_hours_night, :available_until, :longitude, :latitude)
+  end
+
+  def build_geojson
+    {
+      type: 'FeatureCollection',
+      features: @collections.map(&:to_feature)
+    }
   end
 end
