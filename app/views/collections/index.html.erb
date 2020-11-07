@@ -1,8 +1,16 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :js_libs, "modernizr gmaps flot chartjs demo-dashboard demo-gmaps" %>
 
-<h1>Collections</h1>
-<%= link_to 'logout', destroy_user_session_path, method: :delete %>
-
+<div class="container-fluid">
+  <%= render partial: 'content_blocks/app_navs/navbar' %>
+  <p id="notice"><%= notice %></p>
+  <%# <%= render partial: 'dashboard/bs_table' %1> %>
+  <%# <%= render partial: 'dashboard/metrics_cards' %1> %>
+  <%# <%= render partial: 'dashboard/metric_charts' %1> %>
+  <%# <%= render partial: 'dashboard/sales_refunds' %1> %>
+  <%# <%= render partial: 'dashboard/server_activity' %1> %>
+  <%# <%= render partial: 'dashboard/most_active_users' %1> %>
+  <%# <%= render partial: 'dashboard/online_users' %1> %>
+</div>
 <table>
   <thead>
     <tr>
@@ -41,6 +49,3 @@
 </table>
 
 <br>
-<% if can? :create, Collection %>
-<%= link_to 'New Collection', new_collection_path %>
-<% end %>
