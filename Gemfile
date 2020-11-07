@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'better_errors'
 gem 'cancancan'
 gem 'devise'
+gem 'gon'
 gem 'kiso_themes', '~>1.0.2', source: 'https://gems.kiso.io/'
 gem 'simple_form'
 
