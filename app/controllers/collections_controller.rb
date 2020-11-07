@@ -2,6 +2,7 @@ class CollectionsController < ApplicationController
   before_action :set_collection, only: %i[show edit update destroy]
   load_and_authorize_resource
 
+  layout '_base'
   # GET /collections
   # GET /collections.json
   def index

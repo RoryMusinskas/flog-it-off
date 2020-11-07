@@ -1,5 +1,18 @@
-<p>Welcome <%= @email %>!</p>
+<%= email_message_section do %>
+  <%= email_message_spacer 2 %>
+  <%= email_message_body_text do %>
+    Welcome <%= @resource.email %>! You can confirm your account email through the link below:
+  <% end %>
 
-<p>You can confirm your account email through the link below:</p>
+  <%= email_message_button do %>
+    <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token), style: 'color: #fff;' %>
+  <% end %>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+  <%= email_message_spacer 2 %>
+
+  <%= email_message_small_text do %>
+    Any questions? Just email us.
+  <% end %>
+
+  <%= email_message_spacer 2 %>
+<% end %>
