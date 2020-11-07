@@ -23,6 +23,7 @@
     "jquery-slimscroll": "^1.3.8",
     "jqvmap": "^1.5.1",
     "jvectormap": "2.0.4",
+    "mapbox-gl": "^1.12.0",
     "metismenu": "2.7.2",
     "modernizr": "^3.11.3",
     "object-fit-images": "^3.2.4",
