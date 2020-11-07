@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Seeding the categories for the app
+Category.create([{ name: 'Doors' }, { name: 'Electrical' }, { name: 'Fixtures' }, { name: 'Flooring' }, { name: 'Masonry' }, { name: 'Plaster' }, { name: 'Plumbing' }, { name: 'Roofing' }, { name: 'Timber' }, { name: 'Windows' }])
