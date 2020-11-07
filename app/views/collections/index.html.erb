@@ -1,3 +1,6 @@
+<head>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+</head>
 <%= content_for :js_libs, "modernizr gmaps flot chartjs demo-dashboard demo-gmaps" %>
 
 <div class="container-fluid">
@@ -9,7 +12,7 @@
   <%# <%= render partial: 'dashboard/sales_refunds' %1> %>
   <%# <%= render partial: 'dashboard/server_activity' %1> %>
   <%# <%= render partial: 'dashboard/most_active_users' %1> %>
-  <%# <%= render partial: 'dashboard/online_users' %1> %>
+  <%= render partial: 'dashboard/online_users' %>
 </div>
 <table>
   <thead>
