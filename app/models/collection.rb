@@ -1,7 +1,8 @@
 class Collection < ApplicationRecord
   belongs_to :seller, class_name: 'User', foreign_key: 'seller_id'
   has_one :payment
-  has_many :categories, through: :collection_category
+  has_many :collection_categories
+  has_many :categories, through: :collection_categories
 
   def coordinates
     [longitude, latitude]
