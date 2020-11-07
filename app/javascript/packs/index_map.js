@@ -22,7 +22,7 @@ function initializeMap() {
   });
 
   map.on("load", function () {
-    console.log(gon.geocollection);
+    // console.log(gon.geocollection);
     // Add an image to use as a custom marker
     map.loadImage(
       "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png",
@@ -56,7 +56,7 @@ function initializeMap() {
   map.on("click", "collections", function (e) {
     var coordinates = e.features[0].geometry.coordinates.slice();
     var description = e.features[0].properties.description;
-    console.log(description);
+    // console.log(description);
 
     //find the collections id of the clicked marker
     var clicked_collection_id = e.features[0].properties.collection_id;
@@ -66,7 +66,7 @@ function initializeMap() {
       (x) => x.id === clicked_collection_id
     );
 
-    console.log(found_collection);
+    // console.log(found_collection);
 
     // Ensure that if the map is zoomed out such that multiple
     // copies of the feature are visible, the popup appears
@@ -105,6 +105,12 @@ function initializeMap() {
     map.getCanvas().style.cursor = "";
   });
 
+  document.querySelector("#map").addEventListener("click", function (e) {
+    console.log(e);
+    if (e.target.classList[0] == "show-button") {
+      window.location.replace(`collections/${e.target.id}`);
+    }
+  });
   // add the map controls
   addControlsToMap(mapboxgl, map);
 }
