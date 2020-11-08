@@ -1,50 +1,54 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <%= render partial: 'content_blocks/app_navs/navbar' %>
+  <p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
 
-<p>
+  <p>
   <strong>Name:</strong>
   <%= @collection.name %>
-</p>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @collection.description %>
-</p>
-
-<p>
+  <p>
   <strong>Price:</strong>
   <%= @collection.price %>
-</p>
+  </p>
 
-<p>
+  <p>
+  <strong>Description:</strong>
+  <%= @collection.description %>
+  </p>
+  
+  <p>
+  <strong>Categories:</strong>
+  <% @collection.category_ids.each_with_index do |c, index| %>
+    <% if @category.ids.include?(c) %>
+      <%= "#{@category[index + 1].name} " %>
+    <% end %>
+  <% end %>
+  </p>
+
+  <p>
   <strong>Quantity:</strong>
   <%= @collection.quantity %>
-</p>
+  </p>
 
-<p>
-  <strong>Available hours morning:</strong>
-  <%= @collection.available_hours_morning %>
-</p>
+  <p>
+  <strong>Available from:</strong>
+  <%= @collection.available_hours_morning %> AM
+  </p>
 
-<p>
-  <strong>Available hours night:</strong>
-  <%= @collection.available_hours_night %>
-</p>
+  <p>
+  <strong>Available until:</strong>
+  <%= @collection.available_hours_night %> PM
+  </p>
 
-<p>
+  <p>
   <strong>Available until:</strong>
   <%= @collection.available_until %>
-</p>
+  </p>
 
-<p>
-  <strong>Longitude:</strong>
-  <%= @collection.longitude %>
-</p>
+  <%= link_to 'Edit', edit_collection_path(@collection) %> |
+  <%= link_to 'Back', collections_path, data: { turbolinks: false } %>
+</div>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @collection.latitude %>
-</p>
-
-<%= link_to 'Edit', edit_collection_path(@collection) %> |
-<%= link_to 'Back', collections_path %>
