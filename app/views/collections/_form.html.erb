@@ -34,7 +34,7 @@
                 <% end %>
                 
                 <%# The jquery to allow multiple selects to be clicked %>
-                <script charset="utf-8">
+                <script>
                   jQuery('option').mousedown(function(e) {
                   e.preventDefault();
                   jQuery(this).toggleClass('selected');
@@ -76,6 +76,12 @@
                   <%= f.error_messages %>
                 <% end %>
 
+                <%= f.form_group :image, class: 'row' do |f| %>
+                  <%= f.label 'Image', class: "form-label" %>
+                  <%= f.file_field :image, accept: 'image/png, image/jpg, image/jpeg', autofocus: true, class: "form-control" %>
+                  <%= f.error_messages %>
+                <% end %>
+
                 <%= f.form_group :map, class: 'row' do |f| %>
                   <div id="map" class='card-body' style='height: 30vh'>
                   </div>
@@ -93,7 +99,7 @@
                 <% end %>
 
                 <%= f.form_group :submit, class: 'row' do |f| %>
-                  <%= f.button :submit, autofocus: true, class: "form-control" %>
+                  <%= f.submit "#{ name } collection", autofocus: true, class: "form-control" %>
                   <%= f.error_messages %>
                 <% end %>
               <% end %>
