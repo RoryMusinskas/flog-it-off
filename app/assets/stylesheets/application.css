@@ -12,4 +12,5 @@
  *
  *= require "kiso_themes"
  *= require_self
+ *= require "index_map"
  */
