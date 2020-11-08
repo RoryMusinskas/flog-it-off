@@ -1,0 +1,30 @@
+<body>
+  <div class="row">
+    <div class="col-12">
+        <div class="card-header">
+          <h6>Collections near you</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-default inspectable">
+        <div id="map"></div>
+        <div class="map-overlay">
+          <fieldset>
+            <input
+              id="feature-filter"
+              type="text"
+              placeholder="Filter results by name"
+              />
+          </fieldset>
+          <div id="feature-listing" class="listing"></div>
+        </div>
+      </div>
+      <%= javascript_pack_tag 'index_map' %>
+    </div>
+  </div>
+  </div>
+</body>
