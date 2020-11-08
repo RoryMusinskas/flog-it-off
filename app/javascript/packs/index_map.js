@@ -60,6 +60,7 @@ function initializeMap() {
 function addFilterToMap(map) {
   // array for visible points on map
   var collectionPoints = [];
+  console.log(collectionPoints);
 
   // Create a popup, but don't add it to the map yet.
   var popup = new mapboxgl.Popup({
@@ -116,6 +117,7 @@ function addFilterToMap(map) {
 
   // Helper function, trim whitespace and make all lowercase
   function normalize(string) {
+    console.log(string);
     return string.trim().toLowerCase();
   }
 
@@ -152,9 +154,10 @@ function addFilterToMap(map) {
         // Clear the input container
         filterEl.value = "";
 
-        // Store the current features in sn `airports` variable to
+        // Store the current features in sn `collectionPoints` variable to
         // later use for filtering on `keyup`.
         collectionPoints = uniqueFeatures;
+        console.log(collectionPoints);
       }
     });
     map.off("render", afterChangeComplete); // remove this handler now that we're done.
@@ -207,7 +210,9 @@ function addFilterToMap(map) {
     }
   });
 
-  renderCollections([]);
+  map.on("load", function () {
+    renderCollections([]);
+  });
 
   // When a click event occurs on a feature in the places layer, open a popup at the
   // location of the feature, with description HTML from its properties.
