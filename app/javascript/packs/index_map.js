@@ -207,10 +207,7 @@ function addFilterToMap(map) {
     }
   });
 
-  // passing an empty array to render an empty state
-  map.on("load", function () {
-    renderCollections([]);
-  });
+  renderCollections([]);
 
   // When a click event occurs on a feature in the places layer, open a popup at the
   // location of the feature, with description HTML from its properties.
