@@ -9,7 +9,7 @@
       <div class="col-12 col-md-6 mr-auto ml-auto">
         <div class="card">
           <div class="card-header">
-           <h6>Create a new collection</h6> 
+            <h6>Create a new collection</h6> 
           </div>
           <div class="card-body">
             <div class="container">
@@ -27,6 +27,22 @@
                   <%= f.text_field :description, autofocus: true, class: "form-control" %>
                   <%= f.error_messages %>
                 <% end %>
+
+                <%= f.form_group :category, class: 'row' do |f| %>
+                  <%= f.label 'Select the category/s for the collection: ', class: 'form-label' %>
+                  <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true, class: 'form-control' %>
+                <% end %>
+                
+                <%# The jquery to allow multiple selects to be clicked %>
+                <script charset="utf-8">
+                  jQuery('option').mousedown(function(e) {
+                  e.preventDefault();
+                  jQuery(this).toggleClass('selected');
+
+                  jQuery(this).prop('selected', !jQuery(this).prop('selected'));
+                  return false;
+                  });
+                </script>
 
                 <%= f.form_group :price, class: 'row' do |f| %>
                   <%= f.label 'Price', class: "form-label" %>
@@ -55,7 +71,7 @@
                 <%= f.form_group :available_until, class: 'row' do |f| %>
                   <%= f.label 'Collection expries on', class: "form-label" %>
                   <div class="container-fluid">
-                  <%= f.datetime_select :available_until, autofocus: true, class: "form-control" %>
+                    <%= f.datetime_select :available_until, autofocus: true, class: "form-control" %>
                   </div>
                   <%= f.error_messages %>
                 <% end %>
