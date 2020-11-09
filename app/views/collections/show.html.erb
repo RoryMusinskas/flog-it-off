@@ -2,9 +2,26 @@
   <%= render partial: 'content_blocks/app_navs/navbar' %>
   <p id="notice"><%= notice %></p>
 
-  <div class="card-body">
-  <%= image_tag (@collection.image if @collection.image.attached?), class: 'img-fluid' %>
+  <div class='card'>
+    <div class="card-body">
+      <%= image_tag (@collection.image if @collection.image.attached?), class: 'img-fluid' %>
+    </div>
   </div>
+
+  <div class="card card-mini card-mini-solid-icon  ">
+  <div class="card-body">
+    <div class="media">
+      <div class="media-body text-left">
+        <h6 class="m-0 text-muted">Views</h6>
+        <h4 class="m-0 counter" data-from="0" data-to="100" data-speed="5000"
+        data-refresh-interval="80"><%= @collection.visit_count %></h4>
+      </div>
+      <div class="d-flex align-self-center text-primary ml-3">
+        <span>
+          <i class="display-4 ti-world  "></i>
+        </span>
+      </div>
+    </div>
 
   <p>
   <strong>Name:</strong>
@@ -55,5 +72,8 @@
     <%= link_to 'Edit', edit_collection_path(@collection), data: { turbolinks: false } %> |
   <% end %>
   <%= link_to 'Back', collections_path, data: { turbolinks: false } %>
+</div>
+
+  </div>
 </div>
 

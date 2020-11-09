@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_043032) do
+ActiveRecord::Schema.define(version: 2020_11_09_060757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_043032) do
     t.integer "seller_id"
     t.integer "available_hours_morning"
     t.integer "available_hours_night"
+    t.integer "visit_count", default: 0
   end
 
   create_table "payments", force: :cascade do |t|

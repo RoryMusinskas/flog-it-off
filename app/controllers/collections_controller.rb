@@ -1,5 +1,7 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: %i[show edit update destroy]
+  # run the increment method for each page load (show)
+  before_action :increment, only: %i[show]
   load_and_authorize_resource
 
   layout '_base'
@@ -20,6 +22,7 @@ class CollectionsController < ApplicationController
   def show
     @category = Category.all
     @available_until = @collection.available_until  
+    # format the available until datetime to the short style for better readability
     @time = @available_until.to_formatted_s(:short)
   end
 
@@ -91,5 +94,10 @@ class CollectionsController < ApplicationController
       type: 'FeatureCollection',
       features: @collections.map(&:to_feature)
     }
+  end
+
+  # increment the visit count column each time the show method is called
+  def increment
+    @collection.increment!(:visit_count)
   end
 end
