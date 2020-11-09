@@ -24,6 +24,7 @@ function initializeMap() {
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v11",
+    center: [144.88, -38.36],
   });
   map.on("load", function () {
     // Add an image to use as a custom marker
