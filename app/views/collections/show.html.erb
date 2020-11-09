@@ -47,10 +47,13 @@
 
   <p>
   <strong>Available until:</strong>
-  <%= @collection.available_until %>
+  <%= @time %>
+  
   </p>
 
-  <%= link_to 'Edit', edit_collection_path(@collection) %> |
+  <% if can? :update, @collection %>
+    <%= link_to 'Edit', edit_collection_path(@collection), data: { turbolinks: false } %> |
+  <% end %>
   <%= link_to 'Back', collections_path, data: { turbolinks: false } %>
 </div>
 
