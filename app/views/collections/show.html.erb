@@ -1,8 +1,10 @@
 <div class="container-fluid">
   <%= render partial: 'content_blocks/app_navs/navbar' %>
   <p id="notice"><%= notice %></p>
-  <p id="notice"><%= notice %></p>
 
+  <div class="card-body">
+  <%= image_tag (@collection.image if @collection.image.attached?), class: 'img-fluid' %>
+  </div>
 
   <p>
   <strong>Name:</strong>

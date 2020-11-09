@@ -3,6 +3,7 @@ class Collection < ApplicationRecord
   has_one :payment
   has_many :collection_categories
   has_many :categories, through: :collection_categories
+  has_one_attached :image
 
   def coordinates
     [longitude, latitude]

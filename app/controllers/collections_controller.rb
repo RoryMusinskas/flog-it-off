@@ -79,7 +79,7 @@ class CollectionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def collection_params
-    params.require(:collection).permit(:user_id, :name, :description, :price, :quantity, :available_hours_morning, :available_hours_night, :available_until, :longitude, :latitude, category_ids: [])
+    params.require(:collection).permit(:user_id, :name, :description, :price, :quantity, :available_hours_morning, :available_hours_night, :available_until, :longitude, :latitude, :image, category_ids: [])
   end
 
   def build_geojson
