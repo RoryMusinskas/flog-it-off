@@ -53,19 +53,12 @@
   </p>
 
   <p>
-  <strong>Available from:</strong>
-  <%= @collection.available_hours_morning %> AM
-  </p>
-
-  <p>
-  <strong>Available until:</strong>
-  <%= @collection.available_hours_night %> PM
+  <strong>Available between </strong><%= @collection.available_hours_morning %> AM<strong> and </strong> <%= @collection.available_hours_night %> PM 
   </p>
 
   <p>
   <strong>Available until:</strong>
   <%= @time %>
-  
   </p>
 
   <% if can? :update, @collection %>

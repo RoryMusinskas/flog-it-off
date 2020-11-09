@@ -5,6 +5,16 @@ class Collection < ApplicationRecord
   has_many :categories, through: :collection_categories
   has_one_attached :image
 
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :description, presence: true, length: { maximum: 250 }
+  validates :categories, presence: true
+  validates :price, presence: true
+  validates :quantity, presence: true
+  validates :available_hours_morning, presence: true
+  validates :available_hours_night, presence: true
+  validates :available_until, presence: true
+  validates :image, presence: true
+
   def coordinates
     [longitude, latitude]
   end
