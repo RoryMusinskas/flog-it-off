@@ -1,7 +1,7 @@
 <head>
   <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
 </head>
-<% @title = "New Collection" %>
+<% @title = "#{name} Collection" %>
 
 <div id="main" class="devise-1">
   <div class="container-fluid">
@@ -85,7 +85,11 @@
                 <%= f.form_group :map, class: 'row' do |f| %>
                   <div id="map" class='card-body' style='height: 30vh'>
                   </div>
-                  <%= javascript_pack_tag 'new_map' %>
+                  <% if name == 'Create' %>
+                    <%= javascript_pack_tag 'new_map' %>
+                  <% elsif name == 'Edit' %>
+                    <%= javascript_pack_tag 'edit_map' %>
+                  <% end %>
                 <% end %>
 
                 <%= f.form_group :longitude, class: 'row' do |f| %>
