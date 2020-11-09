@@ -27,10 +27,10 @@
                   <%= f.text_field :description, autofocus: true, class: "form-control" %>
                   <%= f.error_messages %>
                 <% end %>
-
+                
                 <%= f.form_group :category, class: 'row' do |f| %>
                   <%= f.label 'Select the category/s for the collection: ', class: 'form-label' %>
-                  <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true, class: 'form-control' %>
+                  <%= f.collection_select :category_ids, Category.all, :id, :name, {}, { include_blank: false, multiple: true, class: 'form-control' } %>
                 <% end %>
                 
                 <%# The jquery to allow multiple selects to be clicked %>
