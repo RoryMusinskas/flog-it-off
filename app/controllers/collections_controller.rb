@@ -19,6 +19,8 @@ class CollectionsController < ApplicationController
   # GET /collections/1.json
   def show
     @category = Category.all
+    @available_until = @collection.available_until  
+    @time = @available_until.to_formatted_s(:short)
   end
 
   # GET /collections/new
@@ -28,7 +30,9 @@ class CollectionsController < ApplicationController
   end
 
   # GET /collections/1/edit
-  def edit; end
+  def edit 
+    gon.coordinates = [@collection.longitude, @collection.latitude]
+  end
 
   # POST /collections
   # POST /collections.json
