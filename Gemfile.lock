@@ -94,6 +94,8 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.9.0)
+    faker (2.14.0)
+      i18n (>= 1.6, < 2)
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -237,6 +239,7 @@ DEPENDENCIES
   byebug
   cancancan
   devise
+  faker
   gon
   jbuilder (~> 2.7)
   kiso_themes (~> 1.0.2)!
