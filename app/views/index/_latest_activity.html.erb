@@ -21,14 +21,20 @@
             <p class="small"><%= latest.description %></p>
             <%= image_tag latest.image, class: 'img-thumbnail' %>
             <div class="card-activity-feed-item-footer text-right">
+              <div class="card-body ">
+                <span style="font-size: 24px;">
+                  <i class="fa fa-usd "></i>
+                  <%= latest.price %>
+                </span>
+              </div>
               <%= link_to 'View the collection', collection_path(latest), class: "btn btn-primary btn-sm"  %>
             </div>
           </div>
         <% end %>
       </li>
       <%# <li class="card-activity-feed-label"> %>
-      <%#   <time class="small">Yesterday</time> %>
-      <%# </li> %>
+        <%#   <time class="small">Yesterday</time> %>
+        <%# </li> %>
       <li class="card-activity-feed-label card-activity-feed-label-end"></li>
     </ol>
   </div>
