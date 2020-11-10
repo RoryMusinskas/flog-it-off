@@ -1,6 +1,7 @@
 .img-thumbnail {
   max-width: 250px;
   max-height: 250px;
+  width: 100%;
 }
 
 .overflow-y-scroll {
