@@ -8,7 +8,10 @@ class CollectionsController < ApplicationController
   # GET /collections
   # GET /collections.json
   def index
-    @collections = Collection.all
+    # collections which aren't expired
+    @collections = Collection.where('available_until  >= ?', Time.now)
+    @expired_collections = current_user.collections.where('available_until <= ?', Time.now)
+    # @expired_collections = Collection.all
 
     gon.collections = @collections
     # get the values from the database and convert them to geojson for the map layer
@@ -21,7 +24,7 @@ class CollectionsController < ApplicationController
   # GET /collections/1.json
   def show
     @category = Category.all
-    @available_until = @collection.available_until  
+    @available_until = @collection.available_until
     # format the available until datetime to the short style for better readability
     @time = @available_until.to_formatted_s(:short)
   end
@@ -33,7 +36,7 @@ class CollectionsController < ApplicationController
   end
 
   # GET /collections/1/edit
-  def edit 
+  def edit
     gon.coordinates = [@collection.longitude, @collection.latitude]
   end
 
