@@ -28,10 +28,11 @@
   <%= @collection.name %>
   </p>
 
-  <p>
-  <strong>Price:</strong>
-  <%= @collection.price %>
-  </p>
+  <span>
+    <strong>Price </strong>
+    <i class="fa fa-usd "></i>
+    <%= @collection.price %>
+  </span>
 
   <p>
   <strong>Description:</strong>
@@ -61,11 +62,22 @@
   <%= @time %>
   </p>
 
+  <button data-stripe="payment">Buy collection <%= number_to_currency(@collection.price) %></button>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
+          const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+          stripe.redirectToCheckout({
+                sessionId: "<%= @session_id %>"
+              });
+        });
+  </script>
+
   <% if can? :update, @collection %>
     <%= link_to 'Edit', edit_collection_path(@collection), data: { turbolinks: false } %> |
   <% end %>
   <%= link_to 'Back', collections_path, data: { turbolinks: false } %>
-</div>
+  </div>
 
   </div>
 </div>
