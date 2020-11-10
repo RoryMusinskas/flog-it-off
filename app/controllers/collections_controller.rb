@@ -11,7 +11,7 @@ class CollectionsController < ApplicationController
     # collections which aren't expired
     @collections = Collection.where('available_until  >= ?', Time.now)
     @expired_collections = current_user.collections.where('available_until <= ?', Time.now)
-    # @expired_collections = Collection.all
+    @latest_collections = @collections.last(10)
 
     gon.collections = @collections
     # get the values from the database and convert them to geojson for the map layer
