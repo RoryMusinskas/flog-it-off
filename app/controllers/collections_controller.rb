@@ -16,8 +16,6 @@ class CollectionsController < ApplicationController
     @expired_collections = current_user.collections.where('available_until <= ?', Time.now)
     end
 
-    # gon.collections = @collections
-
     # get the values from the database and convert them to geojson for the map layer
     @geojson = build_geojson
     # set the gon variable to the geojson object to pass to the index map js file
@@ -32,6 +30,7 @@ class CollectionsController < ApplicationController
     # format the available until datetime to the short style for better readability
     @time = @available_until.to_formatted_s(:short)
     
+    if current_user.present?
     # stripe session implementation
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
@@ -54,6 +53,7 @@ class CollectionsController < ApplicationController
       cancel_url: "#{root_url}collections"
     )
     @session_id = session.id
+    end
   end
 
   # GET /collections/new
