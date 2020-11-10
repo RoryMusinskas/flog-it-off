@@ -1,0 +1,35 @@
+    <div class="row">
+      <div class="col-12">
+      <% if can? :create, Collection %>
+        <div class="card-header">
+          <h6>Your active collections</h6>
+        </div>
+      <% elsif can? :read, Collection%>
+        <div class="card-header">
+          <h6>Collections near you</h6>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-default inspectable">
+        <div id="map"></div>
+        <div class="map-overlay">
+          <fieldset>
+            <input
+              id="feature-filter"
+              type="text"
+              placeholder="Filter results by name"
+              />
+          </fieldset>
+          <div id="feature-listing" class="listing"></div>
+        </div>
+      </div>
+      <%= javascript_pack_tag 'index_map' %>
+    </div>
+  </div>
+  </div>
+</div>
