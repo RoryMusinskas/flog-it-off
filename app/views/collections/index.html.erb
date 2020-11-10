@@ -7,11 +7,7 @@
 <div class="container-fluid">
   <%= render partial: 'content_blocks/app_navs/navbar' %>
   <p id="notice"><%= notice %></p>
-  <%# <%= render partial: 'dashboard/metrics_cards' %1> %>
-  <%# <%= render partial: 'dashboard/metric_charts' %1> %>
-  <%# <%= render partial: 'dashboard/sales_refunds' %1> %>
-  <%# <%= render partial: 'dashboard/server_activity' %1> %>
-  <%# <%= render partial: 'dashboard/most_active_users' %1> %>
-  <%= render partial: 'dashboard/index_map' %>
-  <%= render partial: 'dashboard/index_table' %>
+  <%= render partial: 'index/map' %>
+  <%= render partial: 'index/table' %>
+  <%= render partial: 'index/latest_activity' %>
 </div>
