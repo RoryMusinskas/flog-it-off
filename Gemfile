@@ -30,7 +30,9 @@ gem 'better_errors'
 gem 'cancancan'
 gem 'devise'
 gem 'gon'
-gem 'kiso_themes', '~>1.0.2', source: 'https://gems.kiso.io/'
+source 'https://gems.kiso.io/' do
+gem 'kiso_themes', '~>1.0.2'
+end
 gem 'simple_form'
 gem 'faker'
 
@@ -55,3 +57,5 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "aws-sdk-s3", "~> 1.83"
+
+gem "stripe", "~> 5.28"
