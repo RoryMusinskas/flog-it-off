@@ -29,8 +29,7 @@ class CollectionsController < ApplicationController
     @available_until = @collection.available_until
     # format the available until datetime to the short style for better readability
     @time = @available_until.to_formatted_s(:short)
-    
-    if current_user.present?
+
     # stripe session implementation
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
@@ -53,7 +52,6 @@ class CollectionsController < ApplicationController
       cancel_url: "#{root_url}collections"
     )
     @session_id = session.id
-    end
   end
 
   # GET /collections/new
