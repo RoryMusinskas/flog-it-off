@@ -21,7 +21,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @collections.each do |collection| %>
+            <% @user_collections.each do |collection| %>
               <tr>
                 <td><%= collection.name %></td>
                 <td><%= collection.description %></td>
@@ -32,10 +32,10 @@
                 <td><%= collection.visit_count %></td>
                 <td>
                   <div class="btn-group btn-group-xs">
-                    <a data-toggle="tooltip" class="btn " data-original-title="Edit">
+                    <a href="<%= edit_collection_path(collection) %>"data-toggle="tooltip" class="btn " data-original-title="Edit", data-turbolinks='false' >
                       <i class="ti-pencil-alt "></i>
                     </a>
-                    <a data-toggle="tooltip" class="btn " data-original-title="Delete">
+                    <a href="<%= collection_path(collection)%>" data-toggle="tooltip" class="btn " data-original-title="Delete", data-method="delete" data-turbolinks='false' >
                       <i class="ti-trash "></i>
                     </a>
                   </div>
@@ -62,13 +62,11 @@
                   </div>
                 </td>
               </tr>
-
               <% end %>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-  k
   </div>
 <% end %>
