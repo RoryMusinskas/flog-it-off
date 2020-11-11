@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_060757) do
+ActiveRecord::Schema.define(version: 2020_11_11_095140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,9 +80,12 @@ ActiveRecord::Schema.define(version: 2020_11_09_060757) do
   create_table "payments", force: :cascade do |t|
     t.bigint "collection_id", null: false
     t.integer "buyer_id"
-    t.datetime "date_paid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount_total"
+    t.string "currency"
+    t.string "payment_status"
+    t.integer "seller_id"
     t.index ["collection_id"], name: "index_payments_on_collection_id"
   end
 
@@ -98,6 +101,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_060757) do
     t.string "first_name"
     t.string "last_name"
     t.string "time_zone", default: "UTC"
+    t.string "stripe_user_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
