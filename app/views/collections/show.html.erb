@@ -7,7 +7,6 @@
       <%= image_tag (@collection.image if @collection.image.attached?), class: 'img-fluid' %>
     </div>
   </div>
-
   <div class="card card-mini card-mini-solid-icon  ">
   <div class="card-body">
     <div class="media">
@@ -64,25 +63,27 @@
 
 
   <%# Script for the buy button, if the user is logged in, then run the stripe script for purchase, else direct them to the login page %> 
-  <% if user_signed_in? %>
-    <script src="https://js.stripe.com/v3/"></script>
-    <button id='buy-button' data-stripe="payment">Buy <%= number_to_currency(@collection.price) %></button>
-    <script>
-      document.querySelector('#buy-button').addEventListener('click', function(){
-              const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
-              stripe.redirectToCheckout({
-                      sessionId: "<%= @session_id %>"
+    <% if user_signed_in? %>
+      <% if cannot? :update, Collection %> 
+        <script src="https://js.stripe.com/v3/"></script>
+        <button id='buy-button' data-stripe="payment">Buy <%= number_to_currency(@collection.price) %></button>
+        <script>
+          document.querySelector('#buy-button').addEventListener('click', function(){
+                      const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+                      stripe.redirectToCheckout({
+                                  sessionId: "<%= @session_id %>"
+                                });
                     });
-            });
-    </script>
-  <% else %>
-    <button id='buy-button' data-stripe="payment">Buy <%= number_to_currency(@collection.price) %></button>
-    <script>
-      document.querySelector('#buy-button').addEventListener('click', function(){
-              window.location.replace("<%= new_user_session_path %>")
-            });
-    </script>
-  <% end %>
+        </script>
+      <% end %>
+    <% else %>
+      <button id='buy-button' data-stripe="payment">Buy <%= number_to_currency(@collection.price) %></button>
+      <script>
+        document.querySelector('#buy-button').addEventListener('click', function(){
+                  window.location.replace("<%= new_user_session_path %>")
+                });
+      </script>
+    <% end %>
 
 
   <% if can? :update, @collection %>
