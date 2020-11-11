@@ -13,7 +13,6 @@
         <div class="card">
           <div class="card-body">
             <div class="container">
-              <%# <%= form_for resource, as: resource_name, url: registration_path(resource_name), %>
               <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name),
                 html: { class: "form-horizontal", novalidate: true } do |f| %>
                 <%= f.input :email, placeholder: 'user@domain.com', input_html: { class: 'form-control' }, label_html: { class: 'form-label' }%>
@@ -21,11 +20,10 @@
                 <%= f.input :last_name, placeholder: 'Your Last Name', input_html: { class: 'form-control' }, label_html: { class: 'form-label' }%>
                 <%= f.input :password, input_html: { class: 'form-control' }, label_html: { class: 'form-label' } %>
                 <%= f.input :password_confirmation, input_html: { class: 'form-control' }, label_html: { class: 'form-label' } %>
+                <%= f.input :time_zone, input_html: { class: 'form-control' }, label_html: { class: 'form-label' } %>
                 <%= f.input :role do %>
                   <%= f.select :role, User.roles.keys.to_a, input_html: { class: 'form-control' }, label_html: { class: 'form-label' } %>
                 <% end %>
-                <%= f.input :time_zone, input_html: { class: 'form-control' }, label_html: { class: 'form-label' } %>
-
                 <div class="row d-flex align-items-center mt-5">
                 <%= link_to 'Log in?', new_session_path(resource_name) %>
                 <%= f.button :submit, "Sign up", class: 'btn btn-primary ml-auto' %>
