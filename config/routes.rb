@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root to: 'home#page'
   get 'home/page'
   get 'payments/success', to: 'payments#success'
+  get 'stripe/connect', to: 'stripe#connect', as: :stripe_connect
+  get 'stripe/dashboard/:user_id', to: 'stripe#dashboard', as: :stripe_dashboard
   post '/payments/webhook', to: 'payments#webhook'
   devise_for :users
   resources :collections
@@ -10,5 +12,4 @@ Rails.application.routes.draw do
   resources :collections do
     post :increment
   end
-
 end
