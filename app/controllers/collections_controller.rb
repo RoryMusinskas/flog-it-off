@@ -8,7 +8,7 @@ class CollectionsController < ApplicationController
   # GET /collections
   def index
     # All collections
-    @collections = Collection.all
+    # @collections = Collection.all
     # All collections which aren't expired or aren't sold, for the index map
     @all_active_unsold_collections = Collection.joins(:payment).where('payments.collection_id': @collections.ids).not_expired
     # All the collections which belong to the current user
@@ -125,7 +125,7 @@ class CollectionsController < ApplicationController
   def build_geojson
     {
       type: 'FeatureCollection',
-      features: @all_active_unsold_collections.map(&:to_feature)
+      features: @collections.map(&:to_feature)
     }
   end
 
