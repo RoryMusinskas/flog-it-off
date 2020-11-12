@@ -11,10 +11,11 @@
       <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Profile</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="stripe-tab" data-toggle="tab" href="#stripe" role="tab" aria-controls="stripe" aria-expanded="false">Completed Collections</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="completed-tab" data-toggle="tab" href="#collections" role="tab" aria-controls="completed-tab" aria-expanded="false">Setup Stripe</a>
+      <% if can? :update, Collection %>
+      <a class="nav-link" id="payment-details-tab" data-toggle="tab" href="#payment-details" role="tab" aria-controls="payment-details" aria-expanded="false">Payment Details</a>
+    <% else %>
+      <a class="nav-link" id="payment-details-tab" data-toggle="tab" href="#payment-details" role="tab" aria-controls="payment-details" aria-expanded="false">Purchase Details</a>
+      <% end %>
     </li>
   </ul>
 </div>
@@ -31,17 +32,10 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="collections" role="tabpanel" aria-labelledby="collections-tab">
+        <div class="tab-pane fade" id="payment-details" role="tabpanel" aria-labelledby="payment-details-tab">
           <div class="card">
             <div class="card-body">
-              <%= render partial: '_user_account/collections' %>
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane fade" id="stripe" role="tabpanel" aria-labelledby="stripe-tab">
-          <div class="card">
-            <div class="card-body">
-              <%= render partial: '_user_account/stripe' %>
+              <%= render partial: '_user_account/payment_details' %>
             </div>
           </div>
         </div>
