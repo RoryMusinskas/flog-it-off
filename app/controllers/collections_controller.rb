@@ -7,17 +7,22 @@ class CollectionsController < ApplicationController
   layout '_base'
   # GET /collections
   def index
-    # collections which aren't expired
-    @collections = Collection.not_expired
-    # collections where payment has been made
-    @completed_collections = @collections.joins(:payment).paid
-    # collections which are not expired and have not been paid for
-    @active_collections = @collections.where.not(id: @completed_collections.ids)
-    # the 10 latest active collections
-    @latest_collections = @active_collections.last(10).reverse
+    # All collections
+    @collections = Collection.all
+    # All collections which aren't expired or aren't sold, for the index map
+    @all_active_unsold_collections = Collection.joins(:payment).where('payments.collection_id': @collections.ids).not_expired
+    # All the collections which belong to the current user
+    @current_user_collections = Collection.where(seller_id: current_user.id)
+    # All the collections which the current user has sold
+    @current_user_sold_collections = Collection.joins(:payment).where('payments.seller_id': current_user.id)
+    # The last 10 collections in the database
+    @latest_collections = Collection.where('available_until >= ?', Time.now).last(10).reverse
+
     if can? :update, Collection
-      @user_collections = @active_collections.where(seller_id: current_user.id)
-      @expired_collections = current_user.collections.where('available_until <= ?', Time.now)
+      # All the current users active collections, which are not sold and are not expired
+      @active_collections = @current_user_collections.where.not(id: @current_user_sold_collections.ids).where('available_until >= ?', Time.now)
+      # All the current users collections, which have expired but have not been sold
+      @expired_unpaid_collections = @current_user_collections.where.not(id: @current_user_sold_collections.ids).where('available_until <= ?', Time.now)
     end
 
     # get the values from the database and convert them to geojson for the map layer
@@ -120,7 +125,7 @@ class CollectionsController < ApplicationController
   def build_geojson
     {
       type: 'FeatureCollection',
-      features: @active_collections.map(&:to_feature)
+      features: @all_active_unsold_collections.map(&:to_feature)
     }
   end
 
