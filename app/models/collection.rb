@@ -17,6 +17,10 @@ class Collection < ApplicationRecord
   validates :available_until, presence: true
   validates :image, presence: true
 
+  # Scopes
+  scope :not_expired, -> { where('available_until >= ?', Time.now) }
+  scope :paid, -> { where('payments.payment_status': 'paid') }
+
   def coordinates
     [longitude, latitude]
   end
