@@ -1,16 +1,11 @@
-You've successfully made a payment!
-<%= link_to "Go to Collections", collections_path %>
 <html>
-  <head><title>Thanks for your order!</title></head>
+  <head><title>You have successfully paid for the collection!</title></head>
+  <%= link_to "Go to Collections", collections_path %>
   <body>
-    <h1>Thanks for your order!</h1>
-<% if current_user.stripe_user_id %>
-  <%= link_to "Go to Stripe Dashboard", stripe_dashboard_path(current_user.id) %>
-<% end %>
     <p>
-      We appreciate your business!
-      If you have any questions, please email
-      <a href="mailto:orders@example.com">orders@example.com</a>.
+    We appreciate your business!
+    If you have any questions, please email
+    <a href="mailto:devrorym@gmail.com">devrorym@gmail.com</a>.
     </p>
   </body>
 </html>
