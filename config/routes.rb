@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/user/profile' => 'account#profile'
   root to: 'home#page'
   get 'home/page'
   get 'payments/success', to: 'payments#success'
