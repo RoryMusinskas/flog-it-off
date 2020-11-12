@@ -1,0 +1,51 @@
+<% if cannot? :update, Collection %>
+  <h5>PURCHASE DETAILS</h5>
+<% else %>
+  <h5>PAYMENT DETAILS</h5>
+<div class="d-flex align-items-center mb-4">
+  <img src="<%= asset_path('kiso_themes/creditcards/visa.png') %>" />
+  <% if current_user.stripe_user_id %>
+    <%= link_to "Go to Stripe Dashboard", stripe_dashboard_path(current_user.id), class: 'btn btn-outline-primary ml-auto' %>
+  <% end %>
+</div>
+<% end %>
+
+<table class="table table-responsive-sm">
+  <% if can? :update, Collection %>
+    <h5>Your Successful Sales</h5>
+  <% else %>
+    <h5>Your Successful Purchases</h5>
+  <% end %>
+  <thead>
+    <th>Payment ID</th>
+    <th>Payment Amount</th>
+    <th>Payment Status</th>
+    <th>Collection</th>
+  </thead>
+  <tbody>
+    <% if cannot? :update, Collection  %>
+      <% @buyer_completed_collections.each do |c| %>
+        <tr>
+          <td><%= c.id %></td>
+          <td><%= c.amount_total/100 %></td>
+          <td>
+            <span class="badge badge-success">Paid</span>
+          </td>
+          <td><%= link_to 'View', collection_path(c.collection_id) %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <% unless @seller_completed_collections == nil %>
+        <% @seller_completed_collections.each do |c| %>
+          <tr>
+            <td><%= c.id %></td>
+            <td><%= c.amount_total/100 %></td>
+            <td>
+              <span class="badge badge-success">Paid</span>
+            </td>
+            <td><%= link_to 'View', collection_path(c.collection_id) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+</table>
