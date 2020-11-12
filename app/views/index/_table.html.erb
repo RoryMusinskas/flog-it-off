@@ -17,7 +17,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @user_collections.each do |collection| %>
+            <% @active_collections.each do |collection| %>
               <tr>
                 <td><%= collection.name %></td>
                 <td><%= collection.description %></td>
@@ -38,7 +38,7 @@
                 </td>
               </tr>
             <% end %>
-            <% @expired_collections.each do |expired| %>
+            <% @expired_unpaid_collections.each do |expired| %>
               <tr>
                 <td><%= expired.name %></td>
                 <td><%= expired.description %></td>
