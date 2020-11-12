@@ -1,3 +1,6 @@
+<% if current_user.present? %>
+  <% controller.redirect_to collections_path %>
+<% else %>
 <%= content_for :js_libs, "modernizr parallax" %>
 
 <% @title = 'Welcome' %>
@@ -20,3 +23,4 @@
 <section class="pt-5 pb-5 bg-dark">
   <%= render partial: 'home/content_blocks/general/34' %>
 </section>
+<% end %>
