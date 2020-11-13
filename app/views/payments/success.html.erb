@@ -1,11 +1,27 @@
 <html>
   <head><title>You have successfully paid for the collection!</title></head>
-  <%= link_to "Go to Collections", collections_path %>
-  <body>
-    <p>
-    We appreciate your business!
-    If you have any questions, please email
-    <a href="mailto:devrorym@gmail.com">devrorym@gmail.com</a>.
-    </p>
-  </body>
+  <div class="container-fluid">
+    <div class="ml-auto mr-auto col-5">
+      <div class="row mt-5">
+        <div class="card">
+          <div class="card-header">
+            <h6>Successful Purchase!</h6> 
+          </div>
+          <div class="card-body">
+            <div class='row'>
+              <p>
+              Enjoy your new purchase.
+              If you have any questions, please email
+              <a href="mailto:devrorym@gmail.com">devrorym@gmail.com</a>.
+              </p>
+            </div>
+            <div class="row">
+              <%= link_to "Back Home", collections_path, class: 'btn btn-primary', data: { turbolinks: false } %>
+            </div>
+            <div class="container">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </html>
