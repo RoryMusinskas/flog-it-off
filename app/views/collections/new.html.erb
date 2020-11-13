@@ -1,4 +1,8 @@
 <div class="container-fluid">
   <%= render partial: 'content_blocks/app_navs/navbar'   %>
-  <%= render 'form', name: 'Create',collection: @collection %>
+  <% if current_user.stripe_user_id.nil? %>
+    <%= controller.redirect_to collections_path %>
+  <% else %>
+    <%= render 'form', name: 'Create',collection: @collection %>
+  <% end %>
 </div>
