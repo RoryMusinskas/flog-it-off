@@ -1,0 +1,27 @@
+<% if current_user.role == 'seller' && current_user.stripe_user_id == nil%>
+  <script>
+    $(document).ready(function(){
+          $("#stripeModal").modal('show');
+        });
+  </script>
+
+  <div class="modal" id='stripeModal' tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Register with Stripe</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>As you will be selling products, you must register with Stripe to recieve payments from buyers.</p>
+        </div>
+        <div class="modal-footer">
+          <%= link_to 'Register with Stripe', stripe_button_link, class: 'btn btn-primary' %>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
