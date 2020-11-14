@@ -35,6 +35,10 @@ class CollectionsController < ApplicationController
 
   # GET /collections/1
   def show
+    # Passing the collection variable to JS for the free button
+    gon.collection = @collection
+    # Passing the current user to JS for the free button
+    gon.current_user = current_user
     # Get all the seeded categories from the DB
     @category = Category.all
     # Get the available until data for the collection
@@ -46,7 +50,7 @@ class CollectionsController < ApplicationController
     @payments = Payment.all
 
     # stripe session implementation
-    if @collection.price != 0
+    if @collection.price > 0
       if user_signed_in?
         @session = Stripe::Checkout::Session.create(
           payment_method_types: ['card'],
@@ -94,6 +98,7 @@ class CollectionsController < ApplicationController
 
     respond_to do |format|
       if @collection.save
+        UserNotifierMailer.send_collection_new_mail(current_user).deliver
         format.html { redirect_to @collection, notice: 'Collection was successfully created.' }
       else
         format.html { render :new }
