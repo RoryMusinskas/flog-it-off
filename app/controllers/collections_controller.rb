@@ -13,14 +13,14 @@ class CollectionsController < ApplicationController
     @payments = Payment.all
     # All collections which aren't expired or aren't sold, for the index map
     @all_active_unsold_collections = Collection.where.not(id: Payment.pluck(:collection_id)).not_expired
-    # All the collections which belong to the current user
-    @current_user_collections = Collection.where(seller_id: current_user.id)
-    # All the collections which the current user has sold
-    @current_user_sold_collections = Collection.joins(:payment).where('payments.seller_id': current_user.id)
     # The last 10 collections in the database
     @latest_collections = @all_active_unsold_collections.last(10).reverse
 
     if can? :update, Collection
+      # All the collections which belong to the current user
+      @current_user_collections = Collection.where(seller_id: current_user.id)
+      # All the collections which the current user has sold
+      @current_user_sold_collections = Collection.joins(:payment).where('payments.seller_id': current_user.id)
       # All the current users active collections, which are not sold and are not expired
       @active_collections = @current_user_collections.where.not(id: @current_user_sold_collections.ids).where('available_until >= ?', Time.now)
       # All the current users collections, which have expired but have not been sold
