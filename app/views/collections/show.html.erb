@@ -6,7 +6,7 @@
   <p id="notice"><%= notice %></p>
 
   <div class='card <%= p 'transparent' if (@payments.where(collection_id: @collection.id).exists?) %>'>
-        <div class="card-body">
+        <div class="card-body d-flex justify-content-center">
             <%= image_tag (@collection.image if @collection.image.attached?), class: 'img-fluid' %>
         </div>
       </div>
@@ -70,16 +70,30 @@
             <%# Script for the buy button, if the user is logged in, then run the stripe script for purchase, else direct them to the login page %> 
             <% if user_signed_in? %>
               <% if @collection.seller_id != current_user.id %>
-                <script src="https://js.stripe.com/v3/"></script>
-                <button id='buy-button' data-stripe="payment">Buy <%= number_to_currency(@collection.price) %></button>
-                <script>
-                  document.querySelector('#buy-button').addEventListener('click', function(){
-                                      const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
-                                      stripe.redirectToCheckout({
-                                                          sessionId: "<%= @session_id %>"
-                                                        });
-                                    });
-                </script>
+                <% if @collection.price > 0 %>
+                  <script src="https://js.stripe.com/v3/"></script>
+                  <button id='buy-button' class='btn btn-primary' data-stripe="payment">Buy <%= number_to_currency(@collection.price) %></button>
+                  <script>
+                    document.querySelector('#buy-button').addEventListener('click', function(){
+                                          const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+                                          stripe.redirectToCheckout({
+                                                                sessionId: "<%= @session_id %>"
+                                                              });
+                                        });
+                  </script>
+                <% else %>
+                  <button id='free-button' class='btn btn-primary'>FREE</button>
+                                          <script>
+                    $("#free-button").click(function(){
+                                          $.ajax({
+                                                                method: 'POST',
+                                                                url: '/payments/free_collection',
+                                                                data: {collection: gon.collection, buyer: gon.current_user}
+                                                              })
+                                        })
+                  </script>
+
+                <% end %>
               <% end %>
             <% else %>
               <%# redirect the user to login or signup %>
