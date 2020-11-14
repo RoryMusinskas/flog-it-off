@@ -13,3 +13,7 @@
  *= require "kiso_themes"
  *= require_self
  */
+
+.container-fluid {
+  max-width: 2000px;
+}
