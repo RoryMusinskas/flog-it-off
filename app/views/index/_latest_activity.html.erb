@@ -1,38 +1,40 @@
 <%= stylesheet_link_tag 'index_latest_activity' %>
-<div class="card card-full-height card-activity-feed  ">
-  <div class="card-header">
-    <h6>LATEST ACTIVITY</h6>
-  </div>
-  <div class="card-body overflow-y-scroll">
-    <ol>
-      <li class="card-activity-feed-label">
-        <time class="small">Latest</time>
-      </li>
-      <li class="card-activity-feed-item">
-        <div class="card-activity-feed-item-icon">
-          <i class="ti-cloud-up bg-blue"></i>
-        </div>
-        <% @latest_collections.each do |latest| %>
-          <div class="card-activity-feed-item-body">
-            <h6 class="d-flex"><%= latest.name %> created a collection
-              <time class="ml-auto small">
-                <i class="ti-time "></i> <%= latest.created_at.to_formatted_s(:short) %></time>
-            </h6>
-            <p class="small"><%= latest.description %></p>
-            <%= image_tag latest.image, class: 'img-thumbnail' %>
-            <div class="card-activity-feed-item-footer text-right">
-              <div class="card-body ">
-                <span style="font-size: 24px;">
-                  <i class="fa fa-usd "></i>
-                  <%= latest.price %>
-                </span>
-              </div>
-              <%= link_to 'View the collection', collection_path(latest), class: "btn btn-primary btn-sm"  %>
-            </div>
+<div class="container-fluid">
+  <div class="card card-full-height card-activity-feed  ">
+    <div class="card-header">
+      <h6>LATEST ACTIVITY</h6>
+    </div>
+    <div class="card-body overflow-y-scroll">
+      <ol>
+        <li class="card-activity-feed-label">
+          <time class="small">Latest</time>
+        </li>
+        <li class="card-activity-feed-item">
+          <div class="card-activity-feed-item-icon">
+            <i class="ti-cloud-up bg-blue"></i>
           </div>
-        <% end %>
-      </li>
-      <li class="card-activity-feed-label card-activity-feed-label-end"></li>
-    </ol>
+          <% @latest_collections.each do |latest| %>
+            <div class="card-activity-feed-item-body">
+              <h6 class="d-flex"><%= latest.name %> created a collection
+                <time class="ml-auto small">
+                  <i class="ti-time "></i> <%= latest.created_at.to_formatted_s(:short) %></time>
+              </h6>
+              <p class="small"><%= latest.description %></p>
+              <%= image_tag latest.image, class: 'img-thumbnail' %>
+              <div class="card-activity-feed-item-footer text-right">
+                <div class="card-body ">
+                  <span style="font-size: 24px;">
+                    <i class="fa fa-usd "></i>
+                    <%= latest.price %>
+                  </span>
+                </div>
+                <%= link_to 'View the collection', collection_path(latest), class: "btn btn-primary btn-sm"  %>
+              </div>
+            </div>
+          <% end %>
+        </li>
+        <li class="card-activity-feed-label card-activity-feed-label-end"></li>
+      </ol>
+    </div>
   </div>
 </div>
