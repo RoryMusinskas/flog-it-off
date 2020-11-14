@@ -13,4 +13,13 @@ class PaymentsController < ApplicationController
     render plain: 'Success'
     Payment.create collection_id: collection_id, buyer_id: buyer_id, seller_id: seller_id, amount_total: amount_total, currency: currency, payment_status: payment_status
   end
+
+  def free_collection
+    collection_id = params[:collection][:id]
+    seller_id = params[:collection][:seller_id]
+    amount_total = params[:collection][:price]
+    buyer_id = params[:buyer][:id]
+    Payment.create collection_id: collection_id, buyer_id: buyer_id, seller_id: seller_id, amount_total: 'free', payment_status: 'paid'
+    redirect_to payments_success_path
+  end
 end
