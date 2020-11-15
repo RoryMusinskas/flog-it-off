@@ -14,7 +14,7 @@ class StripeController < ApplicationController
       stripe_user_id = response.parsed_response['stripe_user_id']
       current_user.update_attribute(:stripe_user_id, stripe_user_id)
 
-      redirect_to collections_path,
+      redirect_to 'https://flog-it-off.herokuapp.com/collections',
                   notice: 'User successfully connected with Stripe!'
     end
   end
