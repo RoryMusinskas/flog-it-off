@@ -1,9 +1,8 @@
-<header class="landing-header-1" style="background-image: url(<%= image_path('kiso_themes/stock/landscape_10.jpg') %>)">
+<header class="landing-header-1" style="background-image: url(<%= image_path('building-site-waste.jpg') %>)">
   <div class="container">
     <div class="row">
       <div class="col-12">
         <nav class="navbar navbar-landing  navbar-centered navbar-expand-lg my-3">
-          <a href="javascript:" class="navbar-brand d-lg-none"><%= image_tag image_path('kiso_themes/pyrrmid_64.png'), width: 32, height: 32, class: 'mr-2'%>FlogItOff</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#standardLandingNavbarWithCenteredBrand" aria-controls="standardLandingNavbarWithCenteredBrand" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -12,17 +11,10 @@
               <li class="nav-item ">
                 <%= link_to 'HOME', collections_path, class:"nav-link", data: {turbolinks: false} %>
               </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="javascript:">ABOUT</a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="javascript:">CONTACT</a>
-              </li>
             </ul>
-            <a href="javascript:" class="navbar-brand navbar-center text-center d-none d-sm-none d-md-none d-lg-block"><%= image_tag image_path('kiso_themes/pyrrmid_64.png'), width: 32, height: 32, class: 'mr-2'%>PYRMID</a>
             <ul class="nav navbar-nav navbar-right">
               <li class="nav-item">
-                <%= link_to "SIGN IN", new_user_session_path, class: "btn btn-sm btn-outline-light text-white text-hover-dark" %>
+                <%= link_to "SIGN IN", new_user_session_path, class: "btn btn-sm btn-primary" %>
               </li>
               <li class="nav-item">
                 <%= link_to "SIGN UP", new_user_registration_path, class:"btn btn-sm btn-primary" %>
@@ -37,11 +29,10 @@
     <div class="row">
       <div class="col-12 col-md-5 px-5">
         <div class="text-white">
-          <h1 class="mt-5 font-weight-bold leading-tight">WELCOME TO THE NEW THING</h1>
+          <h1 class="mt-5 font-weight-bold leading-tight">WELCOME TO FLOG IT OFF</h1>
           <p class="">Are you sick of the amount of wastage you have on your worksite? Or are you looking for a bargain? </p>
         </div>
         <%= link_to "SIGN UP", new_user_registration_path, class:"btn btn-primary text-white" %>
-        <a class="btn btn-outline-secondary text-white">LEARN MORE</a>
       </div>
     </div>
   </div>
