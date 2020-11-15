@@ -18,10 +18,11 @@ function initializeMap() {
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v11",
+    center: [144.88, -38.36],
   });
 
   // get the current location of the user and set their coords
-  navigator.geolocation.getCurrentPosition((position) => {});
+  navigator.geolocation.getCurrentPosition(() => {});
 
   addControlsToMap(mapboxgl, map);
 }
@@ -86,7 +87,7 @@ function generateMarker(mapboxgl, map, lng, lat) {
   marker = new mapboxgl.Marker({ draggable: true })
     .setLngLat([lng, lat])
     .addTo(map)
-    .on("dragend", function (e) {
+    .on("dragend", function () {
       let lngLat = marker.getLngLat();
       let lat = lngLat.lat;
       let lng = lngLat.lng;
