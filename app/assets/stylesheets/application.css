@@ -14,20 +14,19 @@
  *= require_self
  */
 
-
-@media only screen and (max-width: 480px){
-  .body{
+@media only screen and (max-width: 480px) {
+  .body {
     min-width: 100vw;
   }
-  .navbar{
+  .navbar {
     min-width: 100vw;
   }
-  .card-header{
+  .card-header {
     max-width: 100%;
   }
-.container-fluid {
-  max-width: 100vw;
-  padding-left: 0px;
-  padding-right: 0px;
+  .container-fluid {
+    max-width: 100vw;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
-
