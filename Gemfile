@@ -31,12 +31,13 @@ gem 'cancancan'
 gem 'devise'
 gem 'gon'
 source 'https://gems.kiso.io/' do
-gem 'kiso_themes', '~>1.0.2'
+  gem 'kiso_themes', '~>1.0.2'
 end
-gem 'simple_form'
 gem 'faker'
+gem 'geocoder'
 gem 'httparty'
 gem 'sendgrid-ruby'
+gem 'simple_form'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -58,6 +59,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "aws-sdk-s3", "~> 1.83"
+gem 'aws-sdk-s3', '~> 1.83'
 
-gem "stripe", "~> 5.28"
+gem 'stripe', '~> 5.28'
