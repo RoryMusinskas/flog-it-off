@@ -11,7 +11,7 @@ class Collection < ApplicationRecord
   validates :description, presence: true, length: { maximum: 250 }
   validates :categories, presence: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :quantity, presence: true, numericality: { only_integer: true }
+  validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :available_hours_morning, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 12 }
   validates :available_hours_night, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 12 }
   validates :available_until, presence: true
