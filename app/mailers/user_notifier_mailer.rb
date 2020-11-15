@@ -6,8 +6,24 @@ class UserNotifierMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Thanks for signing up to flog it off')
   end
 
-  def send_collection_new_mail(user)
+  def send_collection_new_mail(user, collection, category)
     @user = user
+    @collection = collection
+    @category = category
     mail(to: @user.email, subject: 'Your collection has been created')
+  end
+
+  def send_collection_update_mail(user, collection, category)
+    @user = user
+    @collection = collection
+    @category = category
+    mail(to: @user.email, subject: 'Your collection has been updated')
+  end
+
+  def send_collection_deleted_mail(user, collection, category)
+    @user = user
+    @collection = collection
+    @category = category
+    mail(to: @user.email, subject: 'Your collection has been deleted')
   end
 end
