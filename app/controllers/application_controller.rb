@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # Sanitizing Devise sign up data
   def configure_permitted_parameters
     # devise params for sign up
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[role first_name last_name time_zone])
