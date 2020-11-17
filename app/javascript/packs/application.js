@@ -18,8 +18,6 @@ require("jquery-countdown");
 require("jquery-countto");
 require("fastclick");
 require("object-fit-images");
-require("flot/source/jquery.canvaswrapper");
-require("flot/source/jquery.flot");
 require("jasny-bootstrap");
 require("jquery-parallax.js");
 require("code-prettify");
