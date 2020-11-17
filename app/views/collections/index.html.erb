@@ -3,6 +3,7 @@
   <%= stylesheet_link_tag 'index' %>
   <%= stylesheet_link_tag 'index_map' %>
 </head>
+<%= content_for :js_libs, "modernizr flot chartjs" %>
 
 <% if can? :update, Collection %>
   <%= render partial: 'index/stripe_modal' %>

@@ -1,8 +1,8 @@
 <head>
   <%= stylesheet_link_tag 'show'  %>
 </head>
-  <%= render partial: 'content_blocks/app_navs/navbar' %>
-  <p id="notice"><%= notice %></p>
+<%= render partial: 'content_blocks/app_navs/navbar' %>
+<p id="notice"><%= notice %></p>
 
 <div class="container-fluid">
   <div class='card <%= p 'transparent' if (Payment.where(collection_id: @collection.id).exists?) %>'>
@@ -100,7 +100,7 @@
           <button id='buy-button' data-stripe="payment">Buy <%= number_to_currency(@collection.price) %></button>
           <script>
             document.querySelector('#buy-button').addEventListener('click', function(){
-                          window.location.replace("<%= new_user_session_path %>")
+                          window.location.replace"<%= new_user_session_path %>")
                         });
           </script>
         <% end %>
