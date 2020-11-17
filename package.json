@@ -17,6 +17,7 @@
     "jquery-countto": "^1.2.0",
     "jquery-parallax.js": "^1.5.0",
     "jquery-slimscroll": "^1.3.8",
+    "jquery-ujs": "^1.2.2",
     "mapbox-gl": "^1.12.0",
     "metismenu": "2.7.2",
     "modernizr": "^3.11.3",
