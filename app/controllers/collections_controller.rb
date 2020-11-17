@@ -10,7 +10,7 @@ class CollectionsController < ApplicationController
   # GET /collections
   def index
     # All collections which aren't expired or aren't sold, these are displayed on the index map for users to see
-    @all_active_unsold_collections = Collection.where.not(id: Payment.pluck(:collection_id)).not_expired
+    @all_active_unsold_collections = Collection.where.not(id: Payment.pluck(:collection_id)).not_expired.includes([image_attachment: :blob])
     # The last 10 collections in the database, these are displayed for the latest activity section
     @latest_collections = @all_active_unsold_collections.last(10).reverse
 
