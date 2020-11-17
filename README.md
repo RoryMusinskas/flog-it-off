@@ -149,21 +149,21 @@
 
   - Collection - This is the main table which will hold all the information for the collection of products that a seller will put up and a buyer will see
 
-    - Collection has one Payment
-    - Collection has many collection_categories
-    - Collection has many categories through collection_categories
+    - `Collection` has one `Payment`
+    - `Collection` has many `collection_categories`
+    - `Collection` has many categories through `collection_categories`
 
-  - important attributes
+  - **important attributes**
 
     - available_until - This is a date-time which the seller can pick for when the collection will expire
 
   - User - This table holds the information for all users in the app, created on signup. They can either be a buyer or a seller role and their experience changes accordingly
 
-    - User has many Payments, as a Seller
-    - User has many Payments, as a Buyer
-    - User has many Collections
+    - `User` has many `Payments`, as a `Seller`
+    - `User` has many `Payments`, as a `Buyer`
+    - `User` has many `Collections`
 
-  - important attributes
+  - **important attributes**
 
     - role - this allows a user to choose if they are a buyer or a seller and the app will be presented accordingly to this
     - time_zone - this allows the user to choose their time zone, this will allow for better post expiry accuracy within the app
@@ -171,19 +171,19 @@
 
   - Payments - This table hold the payment data once a successful stripe webhook has been completed. This table allows us to show the successful payments and purchases for users.
 
-    - Payment has one Collection
-    - Payment has one Buyer
-    - Payment has one Seller
+    - `Payment` has one `Collection`
+    - `Payment` has one `Buyer`
+    - `Payment` has one `Seller`
 
   - CollectionCategory - This is the join table for the many to many relationship between the collection and the category
 
-    - CollectionCategory has one Collection
-    - CollectionCategory has one Category
+    - `CollectionCategory` has one `Collection`
+    - `CollectionCategory` has one `Category`
 
   - Category - This table stores the seeded categories for the sellers to select when they are creating a collection and the buyers to see when they are looking at collections
 
-    - Category has many CollectionCategories
-    - Category has many Collections, through CollectionCategory
+    - `Category` has many `CollectionCategories`
+    - `Category` has many `Collections`, through `CollectionCategory`
 
 - **Provide your database schema design**
 
