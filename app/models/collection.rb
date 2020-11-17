@@ -25,7 +25,7 @@ class Collection < ApplicationRecord
     [longitude, latitude]
   end
 
-  # This adds the structure to the geojson object
+  # This adds the structure to the geojson object, as called from the collections controller
   def to_feature
     {
       "type": 'Feature',
