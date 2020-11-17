@@ -15,7 +15,7 @@
           </div>
           <% @latest_collections.each do |latest| %>
             <div class="card-activity-feed-item-body">
-              <h6 class="d-flex"><%= latest.name %> created a collection
+              <h6 class="d-flex"><%= latest.name %>
                 <time class="ml-auto small">
                   <i class="ti-time "></i> <%= latest.created_at.to_formatted_s(:short) %></time>
               </h6>
