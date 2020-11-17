@@ -26,4 +26,12 @@ class UserNotifierMailer < ApplicationMailer
     @category = category
     mail(to: @user.email, subject: 'Your collection has been deleted')
   end
+
+  def send_collection_purchased_mail(user, collection, category, buyer)
+    @user = user
+    @collection = collection
+    @category = category
+    @buyer_email = User.where(id: buyer)
+    mail(to: @buyer.email, subject: 'You have successfully purchased a new collection')
+  end
 end
