@@ -27,6 +27,7 @@ function initializeMap() {
     container: "map",
     style: "mapbox://styles/mapbox/streets-v11",
     center: [144.88, -38.36],
+    zoom: 5,
   });
   map.on("load", function () {
     // Add an image to use as a custom marker
@@ -38,9 +39,10 @@ function initializeMap() {
         map.addSource("collections", {
           type: "geojson",
           data: geojson,
-          cluster: true,
-          clusterMaxZoom: 14,
-          clusterRadius: 50,
+          // Commented out for now, as it causes the search bar to show undefined and users can click the undefined cluster marker
+          // cluster: true,
+          // clusterMaxZoom: 14,
+          // clusterRadius: 50,
         });
         map.addLayer({
           id: "collections",
@@ -48,7 +50,7 @@ function initializeMap() {
           source: "collections",
           layout: {
             "icon-image": "custom-marker",
-            "text-field": ["get", "seller_id"],
+            "text-field": ["get", "price"],
             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
             "text-offset": [0, 1.25],
             "text-anchor": "top",
