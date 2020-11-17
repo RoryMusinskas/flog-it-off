@@ -1,5 +1,6 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: %i[show edit update destroy]
+  before_action :set_payment, only: %i[index show]
   before_action :set_category, only: %i[show create update]
   # run the increment method for each page load (show)
   before_action :increment, only: %i[show]
@@ -21,7 +22,7 @@ class CollectionsController < ApplicationController
       # All the current users active collections, which are not sold and are not expired, these shown on the index table
       @active_collections = @current_user_collections.where.not(id: @current_user_sold_collections.ids).where('available_until >= ?', Time.now)
       # All the current users collections, which have expired but have not been sold, also shown on the index table
-      @expired_unpaid_collections = @current_user_collections.where.not(id: Payment.includes(:id)).where('available_until <= ?', Time.now)
+      @expired_unpaid_collections = @current_user_collections.where.not(id: @payments).where('available_until <= ?', Time.now)
     end
 
     # get the all the collections from the database and convert them to geojson for the map layer
@@ -136,6 +137,10 @@ class CollectionsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_collection
     @collection = Collection.find(params[:id])
+  end
+
+  def set_payment
+    @payments = Payment.all
   end
 
   def set_category
