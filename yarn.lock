@@ -3512,13 +3512,6 @@ globule@^1.0.0:
     lodash "~4.17.10"
     minimatch "~3.0.2"
 
-gmaps.core@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/gmaps.core/-/gmaps.core-0.5.1.tgz#7e8f1459716143cbc270bd17740648f1e6da78ad"
-  integrity sha1-fo8UWXFhQ8vCcL0XdAZI8ebaeK0=
-  dependencies:
-    lodash-compat "^3.8.0"
-
 good-listener@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/good-listener/-/good-listener-1.2.2.tgz#d53b30cdf9313dffb7dc9a0d477096aa6d145c50"

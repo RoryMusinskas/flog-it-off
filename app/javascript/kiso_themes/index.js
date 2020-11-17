@@ -9,7 +9,6 @@ require("./kiso_themes/header");
 require("./kiso_themes/forms");
 require("./kiso_themes/bootstrap_switch");
 require("./kiso_themes/sheets");
-require("./kiso_themes/gmaps");
 require("./kiso_themes/jqvectormaps");
 require("./kiso_themes/jasny");
 require("./kiso_themes/flot");
@@ -28,7 +27,6 @@ require("./kiso_themes/demo/chartjs");
 require("./kiso_themes/demo/dashboard");
 require("./kiso_themes/demo/easypiechart");
 require("./kiso_themes/demo/flot");
-require("./kiso_themes/demo/gmaps");
 require("./kiso_themes/demo/jqvectormap");
 require("./kiso_themes/demo/sparklines");
 
