@@ -1,116 +1,116 @@
 <head>
   <%= stylesheet_link_tag 'show'  %>
 </head>
-<div class="container-fluid">
-  <%= render partial: 'content_blocks/app_navs/navbar' %>
-  <p id="notice"><%= notice %></p>
+<%= render partial: 'content_blocks/app_navs/navbar' %>
+<p id="notice"><%= notice %></p>
 
-  <div class='card <%= p 'transparent' if (@payments.where(collection_id: @collection.id).exists?) %>'>
-        <div class="card-body d-flex justify-content-center">
-            <%= image_tag (@collection.image if @collection.image.attached?), class: 'img-fluid' %>
+<div class="container-fluid">
+  <div class='card <%= p 'transparent' if (Payment.where(collection_id: @collection.id).exists?) %>'>
+    <div class="card-body d-flex justify-content-center">
+      <%= image_tag (@collection.image if @collection.image.attached?), class: 'img-fluid' %>
+    </div>
+  </div>
+  <div class="card card-mini card-mini-solid-icon  ">
+    <div class="card-body">
+      <div class="media">
+        <div class="media-body text-left">
+          <h6 class="m-0 text-muted">Views</h6>
+          <h4 class="m-0 counter" data-from="0" data-to="100" data-speed="5000"
+                                                              data-refresh-interval="80"><%= @collection.visit_count %></h4>
+        </div>
+        <div class="d-flex align-self-center text-primary ml-3">
+          <span>
+            <i class="display-4 ti-world"></i>
+          </span>
         </div>
       </div>
-      <div class="card card-mini card-mini-solid-icon  ">
-        <div class="card-body">
-          <div class="media">
-            <div class="media-body text-left">
-              <h6 class="m-0 text-muted">Views</h6>
-              <h4 class="m-0 counter" data-from="0" data-to="100" data-speed="5000"
-                                                                  data-refresh-interval="80"><%= @collection.visit_count %></h4>
-            </div>
-            <div class="d-flex align-self-center text-primary ml-3">
-              <span>
-                <i class="display-4 ti-world"></i>
-              </span>
-            </div>
-          </div>
 
-          <p>
-          <strong>Name:</strong>
-          <%= @collection.name %>
-          </p>
+      <p>
+      <strong>Name:</strong>
+      <%= @collection.name %>
+      </p>
 
-          <span>
-            <strong>Price </strong>
-            <i class="fa fa-usd "></i>
-            <%= @collection.price %>
-          </span>
+      <span>
+        <strong>Price </strong>
+        <i class="fa fa-usd "></i>
+        <%= @collection.price %>
+      </span>
 
-          <p>
-          <strong>Description:</strong>
-          <%= @collection.description %>
-          </p>
+      <p>
+      <strong>Description:</strong>
+      <%= @collection.description %>
+      </p>
 
-          <p>
-          <strong>Categories:</strong>
-          <% @collection.category_ids.each_with_index do |c, index| %>
-            <% if @category.ids.include?(c) %>
-              <%= "#{@category[index + 1].name}" %>
-            <% end %>
-          <% end %>
-          </p>
+      <p>
+      <strong>Categories:</strong>
+      <% @collection.category_ids.each_with_index do |c, index| %>
+        <% if @category.ids.include?(c) %>
+          <%= "#{@category[index + 1].name}" %>
+        <% end %>
+      <% end %>
+      </p>
 
-          <p>
-          <strong>Quantity:</strong>
-          <%= @collection.quantity %>
-          </p>
+      <p>
+      <strong>Quantity:</strong>
+      <%= @collection.quantity %>
+      </p>
 
-          <% if @payments.where(collection_id: @collection.id).exists? %>
-            <%= link_to 'Back', collections_path, data: { turbolinks: false } %>
-          <% else %>
-            <p>
-            <strong>Available between </strong><%= @collection.available_hours_morning %> AM<strong> and </strong> <%= @collection.available_hours_night %> PM 
-            </p>
+      <% if Payment.where(collection_id: @collection.id).exists? %>
+        <%= link_to 'Back', collections_path, data: { turbolinks: false } %>
+      <% else %>
+        <p>
+        <strong>Available between </strong><%= @collection.available_hours_morning %> AM<strong> and </strong> <%= @collection.available_hours_night %> PM 
+        </p>
 
-            <p>
-            <strong>Available until:</strong>
-            <%= @time %>
-            </p>
+        <p>
+        <strong>Available until:</strong>
+        <%= @time %>
+        </p>
 
-            <%# Script for the buy button, if the user is logged in, then run the stripe script for purchase, else direct them to the login page %> 
-            <% if user_signed_in? %>
-              <% if @collection.seller_id != current_user.id %>
-                <% if @collection.price > 0 %>
-                  <script src="https://js.stripe.com/v3/"></script>
-                  <button id='buy-button' class='btn btn-primary' data-stripe="payment">Buy <%= number_to_currency(@collection.price) %></button>
-                  <script>
-                    document.querySelector('#buy-button').addEventListener('click', function(){
-                                          const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
-                                          stripe.redirectToCheckout({
-                                                                sessionId: "<%= @session_id %>"
-                                                              });
-                                        });
-                  </script>
-                <% else %>
-                  <button id='free-button' class='btn btn-primary'>FREE</button>
-                                          <script>
-                    $("#free-button").click(function(){
-                                          $.ajax({
-                                                                method: 'POST',
-                                                                url: '/payments/free_collection',
-                                                                data: {collection: gon.collection, buyer: gon.current_user}
-                                                              })
-                                        })
-                  </script>
-
-                <% end %>
-              <% end %>
-            <% else %>
-              <%# redirect the user to login or signup %>
-              <button id='buy-button' data-stripe="payment">Buy <%= number_to_currency(@collection.price) %></button>
+        <%# Script for the buy button, if the user is logged in, then run the stripe script for purchase, else direct them to the login page %> 
+        <% if user_signed_in? %>
+          <% if @collection.seller_id != current_user.id %>
+            <% if @collection.price > 0 %>
+              <script src="https://js.stripe.com/v3/"></script>
+              <button id='buy-button' class='btn btn-primary' data-stripe="payment">Buy <%= number_to_currency(@collection.price) %></button>
               <script>
                 document.querySelector('#buy-button').addEventListener('click', function(){
-                                  window.location.replace("<%= new_user_session_path %>")
+                                  const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+                                  stripe.redirectToCheckout({
+                                                    sessionId: "<%= @session_id %>"
+                                                  });
                                 });
               </script>
+            <% else %>
+              <button id='free-button' class='btn btn-primary'>FREE</button>
+              <script>
+                $("#free-button").click(function(){
+                                  $.ajax({
+                                                    method: 'POST',
+                                                    url: '/payments/free_collection',
+                                                    data: {collection: gon.collection, buyer: gon.current_user}
+                                                  })
+                                })
+              </script>
+
             <% end %>
+          <% end %>
+        <% else %>
+          <%# redirect the user to login or signup %>
+          <button id='buy-button' data-stripe="payment">Buy <%= number_to_currency(@collection.price) %></button>
+          <script>
+            document.querySelector('#buy-button').addEventListener('click', function(){
+                          window.location.replace"<%= new_user_session_path %>")
+                        });
+          </script>
+        <% end %>
 
 
-            <% if can? :update, @collection %>
-              <%= link_to 'Edit', edit_collection_path(@collection), data: { turbolinks: false } %> |
-            <% end %>
-            <%= link_to 'Back', collections_path, data: { turbolinks: false } %>
-        </div>
-      </div>
+        <% if can? :update, @collection %>
+          <%= link_to 'Edit', edit_collection_path(@collection), data: { turbolinks: false } %> |
+        <% end %>
+        <%= link_to 'Back', collections_path, data: { turbolinks: false } %>
     </div>
+  </div>
+</div>
 <% end %>

@@ -1,15 +1,16 @@
 <head>
   <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+  <%= stylesheet_link_tag 'index' %>
   <%= stylesheet_link_tag 'index_map' %>
 </head>
 <%= content_for :js_libs, "modernizr flot chartjs" %>
 
-<div class="container-fluid">
-  <% if can? :update, Collection %>
-    <%= render partial: 'index/stripe_modal' %>
-  <% end %>
-  <%= render partial: 'content_blocks/app_navs/navbar' %>
-  <p id="notice"><%= notice %></p>
+<% if can? :update, Collection %>
+  <%= render partial: 'index/stripe_modal' %>
+<% end %>
+<%= render partial: 'content_blocks/app_navs/navbar' %>
+<p id="notice"><%= notice %></p>
+<div class='mt-5'>
   <%= render partial: 'index/map' %>
   <%= render partial: 'index/table' %>
   <%= render partial: 'index/latest_activity' %>

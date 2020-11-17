@@ -10,33 +10,22 @@
 </div>
 <% end %>
 
-<table class="table table-responsive-sm">
-  <% if can? :update, Collection %>
-    <h5>Your Successful Sales</h5>
-  <% else %>
-    <h5>Your Successful Purchases</h5>
-  <% end %>
-  <thead>
-    <th>Payment ID</th>
-    <th>Payment Amount</th>
-    <th>Payment Status</th>
-    <th>Collection</th>
-  </thead>
-  <tbody>
-    <% if cannot? :update, Collection  %>
-      <% @buyer_completed_collections.each do |c| %>
-        <tr>
-          <td><%= c.id %></td>
-          <td><%= c.amount_total/100 %></td>
-          <td>
-            <span class="badge badge-success">Paid</span>
-          </td>
-          <td><%= link_to 'View', collection_path(c.collection_id) %></td>
-        </tr>
-      <% end %>
+<div class="table-responsive">
+  <table class="table">
+    <% if can? :update, Collection %>
+      <h5>Your Successful Sales</h5>
     <% else %>
-      <% unless @seller_completed_collections == nil %>
-        <% @seller_completed_collections.each do |c| %>
+      <h5>Your Successful Purchases</h5>
+    <% end %>
+    <thead>
+      <th>Payment ID</th>
+      <th>Payment Amount</th>
+      <th>Payment Status</th>
+      <th>Collection</th>
+    </thead>
+    <tbody>
+      <% if cannot? :update, Collection  %>
+        <% @buyer_completed_collections.each do |c| %>
           <tr>
             <td><%= c.id %></td>
             <td><%= c.amount_total/100 %></td>
@@ -46,6 +35,19 @@
             <td><%= link_to 'View', collection_path(c.collection_id) %></td>
           </tr>
         <% end %>
+      <% else %>
+        <% unless @seller_completed_collections == nil %>
+          <% @seller_completed_collections.each do |c| %>
+            <tr>
+              <td><%= c.id %></td>
+              <td><%= c.amount_total/100 %></td>
+              <td>
+                <span class="badge badge-success">Paid</span>
+              </td>
+              <td><%= link_to 'View', collection_path(c.collection_id) %></td>
+            </tr>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
-</table>
+  </table>
+</div>

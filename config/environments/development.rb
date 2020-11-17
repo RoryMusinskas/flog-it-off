@@ -61,4 +61,10 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   Rails.application.routes.default_url_options[:host] = '???'
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.rails_logger = true
+  end
 end
