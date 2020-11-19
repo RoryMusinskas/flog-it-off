@@ -38,11 +38,8 @@ function initializeMap() {
         map.addSource("collections", {
           type: "geojson",
           data: geojson,
-          // Commented out for now, as it causes the search bar to show undefined and users can click the undefined cluster marker
-          // cluster: true,
-          // clusterMaxZoom: 14,
-          // clusterRadius: 50,
         });
+        // add collections layer from the geoJSON file to the map
         map.addLayer({
           id: "collections",
           type: "symbol",
