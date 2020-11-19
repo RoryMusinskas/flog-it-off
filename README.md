@@ -1,5 +1,11 @@
 # README
 
+**Install and test accounts**
+
+- For local installation, you will need to run a special bundle command for the Kiso theme subscription. I have added this to the comments on the submission, along with the master key.
+- You can use the seller test account: seller@test.com, password: password
+- You can use the buyer test account: buyer@test.com, password: password
+
 **Identification of the problem you are trying to solve by building this particular marketplace app.**
 
 - In Australia, each year on average, we generate 20 million tonnes of construction waste. A large portion of this 'waste' is generally just a surplus of good condition excess building materials. There is no specific way for trades-people to advertise and give, sell or trade this surplus, which results in perfectly good products/materials going to a waste station. As the world moves to combat global warming, it would be prudent for the construction industry to minimise the amount of waste created and the reproduction of materials which were already made, but are now sitting in landfill.
