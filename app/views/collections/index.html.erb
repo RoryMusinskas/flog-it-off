@@ -9,6 +9,7 @@
   <%= render partial: 'index/stripe_modal' %>
 <% end %>
 <%= render partial: 'content_blocks/app_navs/navbar' %>
+<%= flash[:alert] %>
 <p id="notice"><%= notice %></p>
 <div class='mt-5'>
   <%= render partial: 'index/map' %>
