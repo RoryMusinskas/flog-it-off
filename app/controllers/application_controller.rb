@@ -2,6 +2,11 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :set_time_zone, if: :current_user
 
+  # Redirect user and add excepiton message when the try to access a page they aren't authorized to
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: exception.message
+  end
+
   def after_sign_in_path_for(_resource)
     collections_path
   end
