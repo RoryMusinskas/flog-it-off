@@ -104,13 +104,42 @@
 
 - **Wireframes for your app**
 
+  - Please refer to the submitted Docs folder.
+
+  - As you will see, my finished product ended up a little bit different to my initial design. When I created the initial design, I wanted to keep it as simple as I could to meet the MVP. As the project progressed, I added in extra functionality and hence the design differed.
+  - You will notice I changed the design of the desktop to not span 100% of the view width in my final design, it looked too stretched when it was implemented, so I added margins either side.
+  - The index page was one of the biggest changes from the design, after the initial implementation I decided to add the 'Your Collection' section for sellers and also the 'latest collections' sections. I added these under the map as the map is the main component for the index page and it flows naturally to have them below it.
+  - I also moved the map location on the new page to put it as the last element before the submit button, this was done as it made the form process feel much more streamlined, allowing users to fill out all text fields at once then finish with the map.
+
 - **An ERD for your app**
 
   - Refer to question 19
 
 - **Explain the different high-level components (abstractions) in your app**
 
+  - Rails in it's design has quite a strong abstraction layer, which is often referred to as 'Rails Magic'. This magic is achieved by abstraction via inheritance, or in simple terms, by including or referencing in-built class methods, you can inherit a great deal of functionality in your app whilst also maintaining abstraction, meaning that whilst you inherit the functionality, you don't need to understand the specifics of the class methods implemented.
+
+  - **Throughout this app, I followed the Rails abstraction philosophy and below I have listed some of the main examples of this:**
+
+  - Each controller I utilized for the app, inherit from ApplicationController. ApplicationController in-turn inherits from ActionController::Base.
+
+    - Having the single ApplicationController to inherit from allows you to configure things such as permitted parameters, which I utilized to allows for the Devise permitted parameters.
+    - I also utilized the inheritance to render content to the browser, for example I rendered a lot of partial files for things such as tables and the navbar.
+    - I also redirect users throughout the site, by using ActionControllers inbuilt redirect_to class method.
+
+  - Another rails inheritance used in the app is ActiveRecord::Base, which is the model and is also classified as the Object Relational Mapping system, responsible for storing and accessing ActiveRecord objects without programmers having to write SQL queries, ActiveRecord takes care of all SQL queries needed. Throughout the app I utilized many of the methods provided by ActiveRecord, some examples:
+    - Creation of objects using .new and .create
+    - Conditions with the objects using .where, which is the ORM representation on the SQL WHERE statement and the .join method for my joining table between the categories and collections tables
+    - Attribute queries with a created object, for example calling the .seller? method on my User object which has a seller attribute. (.seller? is available as a attribute query from ActiveRecord.)
+
 - **Detail any third party services that your app will use**
+
+  - Amazon Web Service S3, this is a cloud service which holds all the images which users upload. Installed as a gem and configured through ActiveStorage to send images straight to the Amazon client, in production.
+  - Stripe, I implemented both Stripe Checkout (the front end user buying experience) and Stripe Connect (used to on-board sellers and interact between the Checkout session and the Seller payment). Installed as a gem, checkout is configured to send a webhook to initialize the payment process for the buyer. Connect is configured to basically redirect users to Stripe account creation, with users then being redirected back to the app on account creation and their associated stripe account id saved into the database for buyer to pay them.
+  - Heroku, this is the deployment platform used to deploy my application to the internet for users. After initial Heroku setup with Rails, once the master Git hub is updated, you can push these changes to Heroku to update the live environment.
+  - Kiso, I used Kiso themes to generate my Bootstrap theme, it is installed as a gem, then you can run a Rails generator to create the view and associated bootstrap elements.
+  - Mapbox, I chose mapbox for my mapping solution, due to the great integration with Rails, the in depth documentation and support. It is ran from an individual Javascript file for each of the Index, New and Edit views.
+  - Sendgrid, I implemented sendgrid for the external provider of emails to users after certain actions take place in the apps controllers.
 
 - **Describe your projects models in terms of the relationships (active record associations) they have with each other**
 
@@ -190,3 +219,18 @@
   - https://dbdiagram.io/d/5fb20ee53a78976d7b7c0613
 
 - **Describe the way tasks are allocated and tracked in your project**
+
+  - https://trello.com/b/jxkJLZ2V/t2a2-marketplace-assignment?
+
+  - I used trello as my ticket and project management tool for this development. After my initial project planning, I designed my trello board to reflect the needs of the project, creating detailed and thorough tasks, setting due dates for tasks, adding labels and dividing it up into the following lists.
+
+    - Backlog: all tasks which need to be completed, that don't fall into the below lists
+    - As a Builder (seller): all associated User stories for builder went here
+    - As a User (buyer): all associated User stories for user went here
+    - Gems/external software: all gems and external software that needed to be implemented was listed here
+    - Nice to do: any features which weren't required for the project, but would improve user experience
+    - Doing: tasks which I am currently working on
+    - Complete: any task which has been completed fully
+    - Completed Gems/External software: any gem or third party software thats fully implemented
+
+  - The only task that I got stuck on was Stripe Connect seller on-boarding, I tried to start implementing it before I really understood what I was trying to accomplish. I had implemented up to the point Sellers could make an account and be returned to the app, but I was struggling to figure out how to pay them directly from the purchase. On reflection, I wish I took a step back and looked at the broader picture, as once I figured out what I was actually trying to do, I fixed the issue in 3 lines of code. For a long while I was just reading tutorial after tutorial trying to find the magic answer, but then I took a good proper look at the documentation, without just quickly skim reading it as I had done and understood the issue at hand.
